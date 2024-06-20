@@ -14,6 +14,10 @@ class DetailsIssueHooks < Redmine::Hook::ViewListener
     if User.current.allowed_to?(:edit_issues, context[:project])
       stylesheet_link_tag('issue_dynamic_edit.css', :plugin => :redmine_issue_dynamic_edit)
     end
+    # 240620 add support for permision with edit_assigned_issue
+    if User.current.allowed_to?(:edit_assigned_issues, context[:project])
+      stylesheet_link_tag('issue_dynamic_edit.css', :plugin => :redmine_issue_dynamic_edit)
+    end
   end
 
   def view_layouts_base_body_bottom(context)
@@ -22,6 +26,10 @@ class DetailsIssueHooks < Redmine::Hook::ViewListener
     if User.current.allowed_to?(:edit_issues, context[:project])
       javascript_include_tag('issue_dynamic_edit_configuration_file.js', 'issue_dynamic_edit.js', :plugin => :redmine_issue_dynamic_edit)
     end
+    # 240620 add support for permision with edit_assigned_issue
+    if User.current.allowed_to?(:edit_assigned_issues, context[:project])
+      javascript_include_tag('issue_dynamic_edit_configuration_file.js', 'issue_dynamic_edit.js', :plugin => :redmine_issue_dynamic_edit)
+    end  
   end
 
   def view_issues_show_details_bottom(context)
