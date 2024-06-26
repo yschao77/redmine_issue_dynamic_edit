@@ -69,6 +69,7 @@ body.controller-issues.action-show .dynamicEditField {
 	white-space: nowrap; /* force icons to stay on the same line */
 }
 
+body.controller-issues.action-show .description .dynamicEditField,
 body.controller-issues.action-show .subject .dynamicEditField {
 	bottom: initial;
 	top:100%;
