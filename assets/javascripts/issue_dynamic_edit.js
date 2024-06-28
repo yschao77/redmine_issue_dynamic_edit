@@ -19,6 +19,7 @@ _CONF_LISTENER_TARGET = _CONF_LISTENER_TARGET === "all" ? "*" : _CONF_LISTENER_T
 const SVG_EDIT = '<svg style="width: 1em; height: 1em;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g class="svg_edit"><path d="m2 20c0 1.1.9 2 2 2h2.6l-4.6-4.6z"/><path d="m21.6 5.6-3.2-3.2c-.8-.8-2-.8-2.8 0l-.2.2c-.4.4-.4 1 0 1.4l4.6 4.6c.4.4 1 .4 1.4 0l.2-.2c.8-.8.8-2 0-2.8z"/><path d="m14 5.4c-.4-.4-1-.4-1.4 0l-9.1 9.1c-.5.5-.5 1.1-.1 1.5l4.6 4.6c.4.4 1 .4 1.4 0l9.1-9.1c.4-.4.4-1 0-1.4z"/></g></svg>';
 const SVG_VALID = '<svg style="width: 1em; height: 1em; fill:white;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M10,18c-0.5,0-1-0.2-1.4-0.6l-4-4c-0.8-0.8-0.8-2,0-2.8c0.8-0.8,2.1-0.8,2.8,0l2.6,2.6l6.6-6.6   c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8l-8,8C11,17.8,10.5,18,10,18z" class="svg_check"/></g></svg>';
 const SVG_CANCEL = '<svg style="width: 1em; height: 1em;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M14.8,12l3.6-3.6c0.8-0.8,0.8-2,0-2.8c-0.8-0.8-2-0.8-2.8,0L12,9.2L8.4,5.6c-0.8-0.8-2-0.8-2.8,0   c-0.8,0.8-0.8,2,0,2.8L9.2,12l-3.6,3.6c-0.8,0.8-0.8,2,0,2.8C6,18.8,6.5,19,7,19s1-0.2,1.4-0.6l3.6-3.6l3.6,3.6   C16,18.8,16.5,19,17,19s1-0.2,1.4-0.6c0.8-0.8,0.8-2,0-2.8L14.8,12z" class="svg_cancel"/></g></svg>';
+const SVG_REFRESH = '<svg style="width: 1em; height: 1em;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M20.3,3.7l-1.9,1.9c-3.5-3.5-9.2-3.5-12.7,0c-3.5,3.5-3.5,9.2,0,12.7C7.4,20.1,9.7,21,12,21s4.6-0.9,6.4-2.6   c0.8-0.8,0.8-2,0-2.8s-2-0.8-2.8,0c-1.9,2-5.1,1.9-7.1,0C7.5,14.6,7,13.3,7,12s0.5-2.6,1.5-3.5c1.9-2,5.1-2,7.1,0l-1.8,1.8   c-0.6,0.6-0.2,1.7,0.7,1.7H21c0.6,0,1-0.4,1-1V4.4C22,3.5,20.9,3.1,20.3,3.7z" class="svg_refresh"/></g></svg>';
 
 /*
  * Allow inclusion from other page
@@ -181,6 +182,15 @@ const cloneEditForm = function(){
 			DynamicDescriptionToolbar.setPreviewUrl('/issues/preview?issue_id=' + _ISSUE_ID + '&project_id=' + _PROJECT_ID); 
 			DynamicDescriptionToolbar.draw();
 		}
+		
+		//Save description once and edit again, description won't show content. Refresh page button as a workaround  
+		const refreshBtn = document.createElement('button');
+		const refreshBtnText = 'Click button if you cannot see description content when use dynamic edit';
+		refreshBtn.innerHTML = SVG_REFRESH + ' ' + refreshBtnText;
+		refreshBtn.addEventListener('click', function(){
+			window.location.reload();
+		});
+		document.querySelector('div.issue.details .description').insertBefore(refreshBtn, null);
   	}
 
   	// Specific Case : Title field
