@@ -241,9 +241,14 @@ document.querySelector('body').addEventListener('click', function(e){
 	if(e.target.matches('.dynamicEditField .action.valid') || e.target.closest('.dynamicEditField .action.valid')){
 		e.preventDefault();
 		let inputs = e.target.closest('.dynamicEditField').querySelectorAll('*[name]');
+		let fileInputs = document.querySelectorAll('#new-attachments .attachments_fields *[name]');
+		let allInputs = [];
+		allInputs.push.apply(allInputs, inputs);
+		allInputs.push.apply(allInputs, fileInputs);
 		let formData = [];
 		let existingIndex = [];
-		inputs.forEach(elt => {
+		//inputs.forEach(elt => {
+		allInputs.forEach(elt => {
 			let not_multiple = !elt.matches('input[type="radio"]') && !elt.matches('input[type="checkbox"]');
 			if(elt.matches('input[type="radio"]:checked') || elt.matches('input[type="checkbox"]:checked') || not_multiple){
 				if(!existingIndex.includes(elt.getAttribute('name'))){
