@@ -185,8 +185,8 @@ const cloneEditForm = function(){
 		
 		//Save description once and edit again, description won't show content. Refresh page button as a workaround  
 		const refreshBtn = document.createElement('button');
-		const refreshBtnText = 'Click button when edit description no display';
-		refreshBtn.classList.add('refresh')
+		const refreshBtnText = 'Refresh if no content display after click edit description';
+		refreshBtn.classList.add('refresh');
 		refreshBtn.innerHTML = SVG_REFRESH + ' ' + refreshBtnText;
 		refreshBtn.addEventListener('click', function(){
 			window.location.reload();
@@ -242,8 +242,8 @@ document.querySelector('body').addEventListener('click', function(e){
 	if(e.target.matches('.dynamicEditField .action.valid') || e.target.closest('.dynamicEditField .action.valid')){
 		e.preventDefault();
 		let inputs = e.target.closest('.dynamicEditField').querySelectorAll('*[name]');
-		let fileInputs = document.querySelectorAll('#new-attachments .attachments_fields *[name]');
 		//240802 modify to support visual_editor copy_paste image to save attahments
+		let fileInputs = document.querySelectorAll('#new-attachments .attachments_fields *[name]');
 		let allInputs = [];
 		allInputs.push.apply(allInputs, inputs);
 		allInputs.push.apply(allInputs, fileInputs);
