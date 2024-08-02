@@ -32,6 +32,11 @@ body.controller-issues.action-show div.issue.details div.subject .refreshData {
 	cursor: pointer;
 }
 
+body.controller-issues.action-show div.issue.details div.description .refresh {
+	cursor: pointer;
+}
+
+
 body.controller-issues.action-show div.issue.details .splitcontent {
 	overflow: initial;
 }
@@ -69,7 +74,13 @@ body.controller-issues.action-show .dynamicEditField {
 	white-space: nowrap; /* force icons to stay on the same line */
 }
 
-body.controller-issues.action-show .description .dynamicEditField,
+body.controller-issues.action-show .description .dynamicEditField{
+	position: absolute;
+	height: max-content;
+	left: 30px;
+	top: 20px
+}
+
 body.controller-issues.action-show .subject .dynamicEditField {
 	bottom: initial;
 	top:100%;

@@ -125,7 +125,7 @@ const cloneEditForm = function(){
 	const btn_refresh = document.createElement('button');
 	btn_refresh.classList.add('refreshData');
 	btn_refresh.innerHTML = "&#10227;";
-	document.querySelector('.issue.details div.subject').insertBefore(btn_refresh, null);
+	//document.querySelector('.issue.details div.subject').insertBefore(btn_refresh, null);
 
 	document.querySelectorAll('div.issue.details .attribute').forEach(function(elt){
 		const classList = elt.classList.value.split(/\s+/);
@@ -185,7 +185,8 @@ const cloneEditForm = function(){
 		
 		//Save description once and edit again, description won't show content. Refresh page button as a workaround  
 		const refreshBtn = document.createElement('button');
-		const refreshBtnText = 'Click button if you cannot see description content when use dynamic edit';
+		const refreshBtnText = 'Click button when edit description no display';
+		refreshBtn.classList.add('refresh')
 		refreshBtn.innerHTML = SVG_REFRESH + ' ' + refreshBtnText;
 		refreshBtn.addEventListener('click', function(){
 			window.location.reload();
@@ -242,6 +243,7 @@ document.querySelector('body').addEventListener('click', function(e){
 		e.preventDefault();
 		let inputs = e.target.closest('.dynamicEditField').querySelectorAll('*[name]');
 		let fileInputs = document.querySelectorAll('#new-attachments .attachments_fields *[name]');
+		//240802 modify to support visual_editor copy_paste image to save attahments
 		let allInputs = [];
 		allInputs.push.apply(allInputs, inputs);
 		allInputs.push.apply(allInputs, fileInputs);
